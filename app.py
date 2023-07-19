@@ -7,7 +7,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 
-# Model
+# Importing Model
 from model import forecastPrices
 
 # Dash Instance
@@ -16,21 +16,22 @@ app = Dash(__name__, meta_tags=[{'name': 'viewport','content': 'width=device-wid
 # Server Property
 server = app.server
 
+
+# Side Navigation
 item1 = html.Div(
     [
         html.Div([
             html.P("StockVis Navigation", className="start"),
         html.Div([
-            #stock code input
+            #Link for stock codes
             html.P([html.A("Click Me for Stock Code", href='https://stockanalysis.com/stocks/', target='_blank')]),
-            
+            #Stock code input
             dcc.Input(
                 id='stock',
                 type='text',
                 placeholder='Stock Code',
                 className='btn',
                 required=True,
-                # list=['aapl', 'goog', 'amzn', 'tsla']
             ),
             html.Button('Submit', id='btn-submit', n_clicks=0, className='btn'),
         ], className='stock-text'), 
@@ -48,10 +49,10 @@ item1 = html.Div(
             #Stock price button
             html.Div([
                 html.Button('Stock Price', id='btn-stock', className='btn btn-lower'),
-            #indicator button
+            #Indicator button
                 html.Button('Indicator', id='btn-indicator', className='btn btn-lower'),
             ], className='price'),
-            #Number of days of forecast input
+            #Days
             html.Div([
                 dcc.Input(
                 id='days',
@@ -61,7 +62,7 @@ item1 = html.Div(
                 min=5,
                 max=60,
             ),
-            #forecast button
+            #Forecast button
             html.Button('Forecast', id='btn-forecast', className='btn btn-lower')], className='forecast'),
             
         ], className='fields')
@@ -69,38 +70,39 @@ item1 = html.Div(
     ],
     className='nav')
 
+
+# Right Main Content
 item2 = html.Div(
     [  html.Div([
             html.Div([
+                #Company Name
                 html.Div(
                     [
-                        #Logo
-                        #Company name
                         html.H2(children='Stocks', id='company-header')
                     ],className='header'),
-                
+                #Company Description
                 html.Div([''], id='Description', className='description_ticker'),
                 
+                #Historical Stock Price Plot
                 html.Div(
-                    #Stock price plot
                  id='graph-content'),
                 
+                #Exponential Moving Curve Plot
                 html.Div(
-                    #indicator plot
                  id='indicator-content'),
                 
+                #Forecast Plot
                 html.Div(
-                    #forecast plot
                 id='forecast-content')
             ], className='main-content')
         ], className='inner-content')
     ], className='content')
 
-
+# App Layouting
 app.layout = html.Div([item1, item2], className='container')
 
 
-# Updating stock header and description 
+# Updating stock name and description 
 @callback(Output('company-header', 'children'),
     Output('Description', 'children'),
     Input('btn-submit', 'n_clicks'),
@@ -119,7 +121,8 @@ def update_data(n_clicks, input1):
             return 'Something went Wrong', 'Stock Code Incorrect/Required'
     return 'Stocks', ''
 
-# Setting stock price graph
+
+# Historical Stock Price Functions
 def get_stock_price_fig(df):
     fig = px.line(df,
                     x= 'Date',
@@ -146,7 +149,8 @@ def plot_data(n_clicks, input1, start_date, end_date):
             return 'Stock Code is required/Incorrect'
     return ''
 
-# Setting indicator graph
+
+# Exponential Moving curve functions
 def get_more(df):
     df['EWA_20'] = df['Close'].ewm(span=20, adjust=False).mean()
     fig = px.scatter(df,
@@ -173,7 +177,7 @@ def get_indicator(n_clicks, input1, start_date, end_date):
             return 'Stock Code is required/Incorrect'
     return ''
 
-
+# Forcast Plotting functions
 def plotprices(df, days):
     fig = px.line(df, 
                   x='Date', 

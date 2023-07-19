@@ -1,6 +1,6 @@
-# Import necessary libraries
-# import matplotlib.pyplot as plt
-# import seaborn as sn
+#Import necessary libraries
+import matplotlib.pyplot as plt
+import seaborn as sn
 import pandas as pd
 import datetime as dt
 import numpy as np
@@ -22,7 +22,7 @@ def get_dates(forecast):
     return dates
 
 def forecastPrices(days, code):
-    # Previous 30 days data for training
+    # Previous 60 days data for training
     ndays = '60d'
     
     ticker = yf.Ticker(code)

@@ -11,8 +11,6 @@
     background-size: cover;
     height: 100%;
     display: flex;   
-    /* flex-wrap: wrap; */
-    /* height: 100vh; */
 }
 
 /*left-side panel*/
@@ -144,7 +142,6 @@ h2 {
     
     .container {
         flex-direction: column;
-        /* background-size: auto; */
     }
     
     .nav {
