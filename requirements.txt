@@ -9,3 +9,4 @@ scikit_learn
 seaborn
 yfinance==0.2.24
 Flask==2.2.5
+gunicorn
