@@ -2,10 +2,10 @@ dash==2.11.1
 dash-core-components==2.0.0
 dash-html-components==2.0.0
 dash-table==5.0.0
-numpy==1.*
-pandas>=2.*
-plotly>=5.15.*
-scikit_learn>=1.*
-seaborn>=0.12.*
+numpy
+pandas
+plotly>=5.15.0
+scikit_learn
+seaborn
 yfinance==0.2.24
 Flask==2.2.5
