@@ -2,6 +2,11 @@
 
 This project implements a Stock Visualization and Forecasting web dashboard using the Dash framework. It leverages the Plotly library to visualize the historical open and close stock prices. The prediction of future close stock prices is done using Support Vector Machine regression with an RBF kernel, which is optimized using GridSearchCV. The historical data is obtained from the yfinance PyPI library.
 
+## Deployment
+- http://jestingigi.pythonanywhere.com/
+- https://dashboard.render.com/web/srv-cis10rp8g3n42okpb1ig/logs
+
+**Loading can take some time**
 ## Features
 
 - Historical open and close stock price visualization using Plotly
