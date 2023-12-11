@@ -16,6 +16,9 @@ This project implements a Stock Visualization and Forecasting web dashboard usin
 
 ## Requirements
 
+- **Python Version Used**: 3.8.6
+- **Pip Version**: 20.2.1
+
 ```python
 dash==2.11.1
 dash-core-components==2.0.0
@@ -38,4 +41,9 @@ Flask==2.2.5
 
 ```shell
 git clone https://github.com/JestinGigi/StockVis.git
+```
+## Local Deployment 
+
+```shell
+python app.py
 ```
